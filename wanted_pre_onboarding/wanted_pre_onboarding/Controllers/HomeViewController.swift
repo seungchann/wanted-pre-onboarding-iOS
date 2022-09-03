@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  wanted_pre_onboarding
 //
 //  Created by 김승찬 on 2022/09/03.
@@ -7,13 +7,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class HomeViewController: UIViewController {
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-
-
 }
-
