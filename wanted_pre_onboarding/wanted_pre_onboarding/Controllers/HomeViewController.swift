@@ -78,7 +78,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.homeWeatherCellView.locationLabel.font = UIFont.boldSystemFont(ofSize: 25)
         cell.homeWeatherCellView.locationLabel.textColor = .white
         
-        cell.homeWeatherCellView.weatherIconImageView.backgroundColor = .blue
+        cell.homeWeatherCellView.weatherIconImageView.load(id: weatherInfo[indexPath.row].weather[0].icon)
         
         return cell
     }
