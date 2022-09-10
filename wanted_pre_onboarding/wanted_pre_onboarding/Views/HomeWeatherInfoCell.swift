@@ -16,4 +16,6 @@ public class HomeWeatherCellView: UIView {
     @IBOutlet var temperatureLabel: UILabel!
     @IBOutlet var humidityLabel: UILabel!
     @IBOutlet var weatherIconImageView: UIImageView!
+    @IBOutlet var thermometerIconImageView: UIImageView!
+    @IBOutlet var humidityIconImageView: UIImageView!
 }

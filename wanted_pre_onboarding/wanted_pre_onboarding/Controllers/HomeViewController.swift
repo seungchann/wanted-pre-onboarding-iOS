@@ -71,14 +71,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeWeatherCell", for: indexPath) as? HomeWeatherInfoCell else {
             return UICollectionViewCell()
         }
-        cell.backgroundColor = .black
-        cell.layer.cornerRadius = 20
-        
-        cell.homeWeatherCellView.locationLabel.text = weatherInfo[indexPath.row].name
-        cell.homeWeatherCellView.locationLabel.font = UIFont.boldSystemFont(ofSize: 25)
-        cell.homeWeatherCellView.locationLabel.textColor = .white
+//        cell.backgroundColor = .black
+//        cell.layer.cornerRadius = 20
         
         cell.homeWeatherCellView.weatherIconImageView.load(id: weatherInfo[indexPath.row].weather[0].icon)
+        cell.homeWeatherCellView.locationLabel.text = weatherInfo[indexPath.row].name
+        cell.homeWeatherCellView.temperatureLabel.text = String(weatherInfo[indexPath.row].main.temp) + "°C"
+        cell.homeWeatherCellView.humidityLabel.text = String(weatherInfo[indexPath.row].main.humidity) + "%"
         
         return cell
     }
