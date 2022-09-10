@@ -14,6 +14,8 @@
 		6432EFBB28C37CC9001C21BF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6432EFBA28C37CC9001C21BF /* HomeViewController.swift */; };
 		6432EFBD28C382E5001C21BF /* HomeVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6432EFBC28C382E5001C21BF /* HomeVIew.swift */; };
 		6432EFC028C38856001C21BF /* HomeWeatherInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6432EFBF28C38856001C21BF /* HomeWeatherInfoCell.swift */; };
+		64BD956028C64C6300F41D46 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BD955F28C64C6300F41D46 /* WeatherService.swift */; };
+		64BD956328C6D2AE00F41D46 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BD956228C6D2AE00F41D46 /* Weather.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		6432EFBA28C37CC9001C21BF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		6432EFBC28C382E5001C21BF /* HomeVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVIew.swift; sourceTree = "<group>"; };
 		6432EFBF28C38856001C21BF /* HomeWeatherInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeatherInfoCell.swift; sourceTree = "<group>"; };
+		64BD955F28C64C6300F41D46 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		64BD956228C6D2AE00F41D46 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,7 @@
 				6432EFB628C37C34001C21BF /* Controllers */,
 				6432EFB728C37C4C001C21BF /* Models */,
 				6432EFB828C37C59001C21BF /* Resources */,
+				64FFACF228CB187100C60F84 /* Service */,
 				6432EFB928C37C71001C21BF /* Views */,
 			);
 			path = wanted_pre_onboarding;
@@ -86,6 +91,7 @@
 		6432EFB728C37C4C001C21BF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				64BD956228C6D2AE00F41D46 /* Weather.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -108,6 +114,14 @@
 				6432EFBF28C38856001C21BF /* HomeWeatherInfoCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		64FFACF228CB187100C60F84 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				64BD955F28C64C6300F41D46 /* WeatherService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,7 +197,9 @@
 			files = (
 				6432EFBD28C382E5001C21BF /* HomeVIew.swift in Sources */,
 				6432EFC028C38856001C21BF /* HomeWeatherInfoCell.swift in Sources */,
+				64BD956028C64C6300F41D46 /* WeatherService.swift in Sources */,
 				6432EFA228C37B63001C21BF /* AppDelegate.swift in Sources */,
+				64BD956328C6D2AE00F41D46 /* Weather.swift in Sources */,
 				6432EFBB28C37CC9001C21BF /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

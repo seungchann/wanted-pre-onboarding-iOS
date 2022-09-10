@@ -14,17 +14,43 @@ class HomeViewController: UIViewController {
         return (view as! HomeView)
     }
     
-    public let locations: [String] = [
-        "공주", "광주", "구미", "군산", "대구",
-        "대전", "목포", "부산", "서산", "서울",
-        "속초", "수원", "순천", "울산", "익산",
-        "전주", "제주시", "천안", "청주", "춘천"
+    private let cityIDList: [(Int, String)] = [
+        (1842616, "Gongju"), (1841811, "Gwangju"), (1842225, "Gumi"), (1842025, "Gunsan"), (1835327, "Daegu"),
+        (1835224, "Daejeon"), (1841066, "Mokpo"), (1838524, "Busan"), (1835895, "Seosan City"), (1835848, "Seoul"),
+        (1836553, "Sokcho"), (1835553, "Suwon-si"), (1835648, "Suncheon"), (1833747, "Ulsan"), (1843491, "Iksan"),
+        (1845457, "Jeonju"), (1846266, "Jeju City"), (1845759, "Cheonan"), (1845136, "Chuncheon"), (1845604, "Cheongju-si")
     ]
+    
+    public var weatherInfo: [WeatherResponse] = []
     
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchWeather(idList: cityIDList)
         setupLabels()
+    }
+    
+    func fetchWeather(idList: [(Int, String)]) {
+        var cityId = ""
+        for (idx, (id, _)) in cityIDList.enumerated() {
+            cityId += ("\(id),")
+            // Group 으로 받아올 수 있는 최대 지역의 개수가 19개
+            if (idx+1) % 19 == 0 || idx == cityIDList.count-1 {
+                WeatherService.shared.getWeather(cityID: cityId) { result in
+                    switch result {
+                    case .success(let weatherResponseList):
+                        self.weatherInfo = self.weatherInfo + weatherResponseList.list
+                        print(self.weatherInfo)
+                        DispatchQueue.main.async {
+                            self.homeView.weatherInfoCollectionView.reloadData()
+                        }
+                    case .failure(_):
+                        print("error")
+                    }
+                }
+                cityId = ""
+            }
+        }
     }
     
     private func setupLabels() {
@@ -38,23 +64,21 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.locations.count
+        return self.weatherInfo.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeWeatherCell", for: indexPath) as? HomeWeatherInfoCell else {
             return UICollectionViewCell()
         }
-        cell.backgroundColor = .white
-        cell.layer.shadowColor = UIColor.black.cgColor
-        cell.layer.shadowOpacity = 0.5
-        cell.layer.shadowRadius = 10
-        cell.homeWeatherCellView.layer.cornerRadius = 10
-        cell.homeWeatherCellView.layer.masksToBounds = true
+        cell.backgroundColor = .black
+        cell.layer.cornerRadius = 20
         
-        cell.homeWeatherCellView.locationLabel.text = locations[indexPath.row]
+        cell.homeWeatherCellView.locationLabel.text = weatherInfo[indexPath.row].name
         cell.homeWeatherCellView.locationLabel.font = UIFont.boldSystemFont(ofSize: 25)
-        cell.homeWeatherCellView.locationLabel.textColor = .black
+        cell.homeWeatherCellView.locationLabel.textColor = .white
+        
+        cell.homeWeatherCellView.weatherIconImageView.backgroundColor = .blue
         
         return cell
     }
