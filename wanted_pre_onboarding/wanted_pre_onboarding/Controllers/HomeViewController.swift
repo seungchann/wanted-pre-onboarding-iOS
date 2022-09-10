@@ -74,7 +74,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 //        cell.backgroundColor = .black
 //        cell.layer.cornerRadius = 20
         
-        cell.homeWeatherCellView.weatherIconImageView.load(id: weatherInfo[indexPath.row].weather[0].icon)
+        cell.homeWeatherCellView.weatherIconImageView.setImageByIconID(id: weatherInfo[indexPath.row].weather[0].icon)
         cell.homeWeatherCellView.locationLabel.text = weatherInfo[indexPath.row].name
         cell.homeWeatherCellView.temperatureLabel.text = String(weatherInfo[indexPath.row].main.temp) + "°C"
         cell.homeWeatherCellView.humidityLabel.text = String(weatherInfo[indexPath.row].main.humidity) + "%"

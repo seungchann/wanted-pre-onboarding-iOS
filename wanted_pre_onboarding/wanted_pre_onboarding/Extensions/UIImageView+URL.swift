@@ -8,16 +8,30 @@
 import UIKit
 
 extension UIImageView {
-    func load(id: String) {
-        let url = URL(string: "https://openweathermap.org/img/wn/\(id)@2x.png")
+    func setImageByIconID(id: String) {
+        let cacheKey = NSString(string: id)
         
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url!) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
+        // 해당 Key 에 이미지가 저장되어 있을 경우 사용
+        if let cacheImage = ImageCacheManager.shared.object(forKey: cacheKey) {
+            self.image = cacheImage
+            return
+        }
+        
+        DispatchQueue.global(qos: .background).async {
+            if let url = URL(string: "https://openweathermap.org/img/wn/\(id)@2x.png") {
+                URLSession.shared.dataTask(with: url) { data, responce, error in
+                    if let _ = error {
+                        DispatchQueue.main.async {
+                            self.image = UIImage()
+                        }
+                        return
                     }
-                }
+                    DispatchQueue.main.async {
+                        if let data = data, let image = UIImage(data: data) {
+                            self.image = image
+                        }
+                    }
+                }.resume()
             }
         }
     }

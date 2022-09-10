@@ -41,19 +41,4 @@ class WeatherService {
             }
         }.resume()
     }
-    
-    func getWeatherIcon(id: String, completion: @escaping (Result<Data, NetworkError>) -> Void) {
-        let url = URL(string: "https://openweathermap.org/img/wn/\(id)@2x.png")
-        
-        guard let url = url else {
-            return completion(.failure(.badUrl))
-        }
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else {
-                return completion(.failure(.noData))
-            }
-            completion(.success(data))
-        }
-    }
 }
