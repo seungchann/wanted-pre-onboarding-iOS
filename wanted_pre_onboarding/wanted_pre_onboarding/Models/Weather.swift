@@ -15,7 +15,7 @@ struct WeatherResponse: Decodable {
     let main: Weather
     let wind: Wind
     let id: Int
-    let name: String
+    var name: String
 }
 
 struct Weather: Decodable {
