@@ -39,29 +39,25 @@ class HomeViewController: UIViewController {
     
     func fetchWeather(idDict: [Int: (Int, String)]) {
         self.weatherInfoList = []
-        var cityId = ""
-        var cnt = 0
+        let cityNum = self.cityInfoDict.count
         for (id, (_, _)) in idDict {
-            cityId += ("\(id),")
-            cnt += 1
-            // Group 으로 받아올 수 있는 최대 지역의 개수가 19개
-            if (cnt % 19 == 0 || cnt == cityInfoDict.count) {
-                WeatherService.shared.getWeatherList(cityID: cityId) { result in
-                    switch result {
-                    case .success(let weatherResponseList):
-                        weatherResponseList.list.forEach { self.weatherInfoList.append((self.cityInfoDict[$0.id]?.0, $0)) }
+            WeatherService.shared.getWeather(cityID: id) { result in
+                switch result {
+                case .success(let weatherResponse):
+                    self.weatherInfoList.append((self.cityInfoDict[weatherResponse.id]?.0, weatherResponse))
+                    
+                    if self.weatherInfoList.count == cityNum {
                         DispatchQueue.main.async {
                             self.weatherInfoList.sort { $0.0 ?? 0 < $1.0 ?? 1 }
                             self.homeView.weatherInfoCollectionView.reloadData()
                         }
-                    case .failure(_):
-                        print("==============================")
-                        print("=====HomeViewController:fetchWeather=====")
-                        print("=====WeatherResponseList 를 불러올 수 없습니다.=====")
-                        print("==============================")
                     }
+                case .failure(_):
+                    print("==============================")
+                    print("=====HomeViewController:fetchWeather=====")
+                    print("=====WeatherResponse 를 불러올 수 없습니다.=====")
+                    print("==============================")
                 }
-                cityId = ""
             }
         }
     }
