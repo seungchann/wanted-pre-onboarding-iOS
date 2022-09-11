@@ -21,7 +21,7 @@ class HomeViewController: UIViewController {
         (1845457, "Jeonju"), (1846266, "Jeju City"), (1845759, "Cheonan"), (1845136, "Chuncheon"), (1845604, "Cheongju-si")
     ]
     
-    public var weatherInfo: [WeatherResponse] = []
+    public var weatherInfoList: [WeatherResponse] = []
     
     // MARK: - View Lifecycle
     override func viewDidLoad() {
@@ -36,11 +36,11 @@ class HomeViewController: UIViewController {
             cityId += ("\(id),")
             // Group 으로 받아올 수 있는 최대 지역의 개수가 19개
             if (idx+1) % 19 == 0 || idx == cityIDList.count-1 {
-                WeatherService.shared.getWeather(cityID: cityId) { result in
+                WeatherService.shared.getWeatherList(cityID: cityId) { result in
                     switch result {
                     case .success(let weatherResponseList):
-                        self.weatherInfo = self.weatherInfo + weatherResponseList.list
-                        print(self.weatherInfo)
+                        self.weatherInfoList = self.weatherInfoList + weatherResponseList.list
+                        print(self.weatherInfoList)
                         DispatchQueue.main.async {
                             self.homeView.weatherInfoCollectionView.reloadData()
                         }
@@ -64,7 +64,7 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.weatherInfo.count
+        return self.weatherInfoList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -74,11 +74,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 //        cell.backgroundColor = .black
 //        cell.layer.cornerRadius = 20
         
-        cell.homeWeatherCellView.weatherIconImageView.setImageByIconID(id: weatherInfo[indexPath.row].weather[0].icon)
-        print(weatherInfo[indexPath.row].name, weatherInfo[indexPath.row].weather[0].icon)
-        cell.homeWeatherCellView.locationLabel.text = weatherInfo[indexPath.row].name
-        cell.homeWeatherCellView.temperatureLabel.text = String(weatherInfo[indexPath.row].main.temp) + "°C"
-        cell.homeWeatherCellView.humidityLabel.text = String(weatherInfo[indexPath.row].main.humidity) + "%"
+        cell.homeWeatherCellView.weatherIconImageView.setImageByIconID(id: weatherInfoList[indexPath.row].weather[0].icon)
+        print(weatherInfoList[indexPath.row].name, weatherInfoList[indexPath.row].weather[0].icon)
+        cell.homeWeatherCellView.locationLabel.text = weatherInfoList[indexPath.row].name
+        cell.homeWeatherCellView.temperatureLabel.text = String(weatherInfoList[indexPath.row].main.temp) + "°C"
+        cell.homeWeatherCellView.humidityLabel.text = String(weatherInfoList[indexPath.row].main.humidity) + "%"
         
         return cell
     }
