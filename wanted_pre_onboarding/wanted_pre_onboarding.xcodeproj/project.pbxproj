@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		640D58D028CC2CB600865921 /* UIImageView+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640D58CF28CC2CB600865921 /* UIImageView+URL.swift */; };
 		640D58D228CC73FD00865921 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640D58D128CC73FD00865921 /* ImageCacheManager.swift */; };
+		640D58D428CC772400865921 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640D58D328CC772400865921 /* DetailViewController.swift */; };
+		640D58D628CC779200865921 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640D58D528CC779200865921 /* DetailView.swift */; };
 		6432EFA228C37B63001C21BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6432EFA128C37B63001C21BF /* AppDelegate.swift */; };
 		6432EFA928C37B63001C21BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6432EFA728C37B63001C21BF /* Main.storyboard */; };
 		6432EFAB28C37B67001C21BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6432EFAA28C37B67001C21BF /* Assets.xcassets */; };
@@ -23,6 +25,8 @@
 /* Begin PBXFileReference section */
 		640D58CF28CC2CB600865921 /* UIImageView+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+URL.swift"; sourceTree = "<group>"; };
 		640D58D128CC73FD00865921 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
+		640D58D328CC772400865921 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		640D58D528CC779200865921 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		6432EF9E28C37B63001C21BF /* wanted_pre_onboarding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wanted_pre_onboarding.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6432EFA128C37B63001C21BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6432EFA828C37B63001C21BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -97,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				6432EFBA28C37CC9001C21BF /* HomeViewController.swift */,
+				640D58D328CC772400865921 /* DetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -125,6 +130,7 @@
 				6432EFAC28C37B67001C21BF /* LaunchScreen.storyboard */,
 				6432EFBC28C382E5001C21BF /* HomeVIew.swift */,
 				6432EFBF28C38856001C21BF /* HomeWeatherInfoCell.swift */,
+				640D58D528CC779200865921 /* DetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -209,8 +215,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				640D58D428CC772400865921 /* DetailViewController.swift in Sources */,
 				6432EFBD28C382E5001C21BF /* HomeVIew.swift in Sources */,
 				6432EFC028C38856001C21BF /* HomeWeatherInfoCell.swift in Sources */,
+				640D58D628CC779200865921 /* DetailView.swift in Sources */,
 				64BD956028C64C6300F41D46 /* WeatherService.swift in Sources */,
 				6432EFA228C37B63001C21BF /* AppDelegate.swift in Sources */,
 				640D58D228CC73FD00865921 /* ImageCacheManager.swift in Sources */,
