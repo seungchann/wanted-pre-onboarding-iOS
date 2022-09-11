@@ -26,8 +26,13 @@ class HomeViewController: UIViewController {
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchWeather(idList: cityIDList)
         setupLabels()
+    }
+    
+    // DetailViewController 에서 뒤로 넘어 왔을 경우에 날씨 새로고침
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchWeather(idList: cityIDList)
     }
     
     func fetchWeather(idList: [(Int, String)]) {
@@ -40,12 +45,14 @@ class HomeViewController: UIViewController {
                     switch result {
                     case .success(let weatherResponseList):
                         self.weatherInfoList = self.weatherInfoList + weatherResponseList.list
-                        print(self.weatherInfoList)
                         DispatchQueue.main.async {
                             self.homeView.weatherInfoCollectionView.reloadData()
                         }
                     case .failure(_):
-                        print("error")
+                        print("==============================")
+                        print("=====HomeViewController:fetchWeather=====")
+                        print("=====WeatherResponseList 를 불러올 수 없습니다.=====")
+                        print("==============================")
                     }
                 }
                 cityId = ""
@@ -73,7 +80,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
         
         cell.homeWeatherCellView.weatherIconImageView.setImageByIconID(id: weatherInfoList[indexPath.row].weather[0].icon)
-        print(weatherInfoList[indexPath.row].name, weatherInfoList[indexPath.row].weather[0].icon)
         cell.homeWeatherCellView.locationLabel.text = weatherInfoList[indexPath.row].name
         cell.homeWeatherCellView.temperatureLabel.text = String(weatherInfoList[indexPath.row].main.temp) + "°C"
         cell.homeWeatherCellView.humidityLabel.text = String(weatherInfoList[indexPath.row].main.humidity) + "%"

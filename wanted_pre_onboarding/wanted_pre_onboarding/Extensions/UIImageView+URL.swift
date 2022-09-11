@@ -21,6 +21,10 @@ extension UIImageView {
             if let url = URL(string: "https://openweathermap.org/img/wn/\(id)@2x.png") {
                 URLSession.shared.dataTask(with: url) { data, responce, error in
                     if let _ = error {
+                        print("==============================")
+                        print("=====UIImageView:setImageByIconID=====")
+                        print("=====이미지를 불러올 수 없습니다.=====")
+                        print("==============================")
                         DispatchQueue.main.async {
                             self.image = UIImage()
                         }
