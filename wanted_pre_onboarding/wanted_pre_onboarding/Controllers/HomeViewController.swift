@@ -5,6 +5,7 @@
 //  Created by 김승찬 on 2022/09/03.
 //
 
+import Foundation
 import UIKit
 
 class HomeViewController: UIViewController {
@@ -86,11 +87,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         cell.layer.cornerRadius = 20
         
-        if weatherInfoList.count != 0 {
+        if (!weatherInfoList.isEmpty) {
             cell.homeWeatherCellView.weatherIconImageView.setImageByIconID(id: weatherInfoList[indexPath.row].1.weather[0].icon)
             cell.homeWeatherCellView.locationLabel.text = self.cityInfoDict[weatherInfoList[indexPath.row].1.id]?.1
-            cell.homeWeatherCellView.temperatureLabel.text = String(weatherInfoList[indexPath.row].1.main.temp) + " °"
-            cell.homeWeatherCellView.humidityLabel.text = String(weatherInfoList[indexPath.row].1.main.humidity) + " %"
+            cell.homeWeatherCellView.temperatureLabel.text = String(format: "%.1f", round(weatherInfoList[indexPath.row].1.main.temp * 10) / 10) + "°"
+            cell.homeWeatherCellView.humidityLabel.text = String(Int(round(weatherInfoList[indexPath.row].1.main.humidity))) + " %"
         }
         
         return cell
@@ -107,7 +108,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let detailViewController = self.storyboard?.instantiateViewController(withIdentifier: "detailViewController") as? DetailViewController else { return }
         
-        detailViewController.weatherInfo = self.weatherInfoList[indexPath.row].1
+        if (!weatherInfoList.isEmpty) {
+            detailViewController.weatherInfo = self.weatherInfoList[indexPath.row].1
+        }
         detailViewController.cityName = self.cityInfoDict[self.weatherInfoList[indexPath.row].1.id]?.1
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }

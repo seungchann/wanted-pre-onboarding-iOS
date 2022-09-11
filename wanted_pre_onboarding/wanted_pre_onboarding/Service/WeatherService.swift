@@ -21,7 +21,7 @@ class WeatherService {
     private let APIKey = "086e3b00efd5c9d4dd31883ac4ac3772"
     
     func getWeatherList(cityID: String, completion: @escaping (Result<WeatherResponseList, NetworkError>) -> Void) {
-        let url = URL(string: "https://api.openweathermap.org/data/2.5/group?id=\(cityID)&appid=\(APIKey)")
+        let url = URL(string: "https://api.openweathermap.org/data/2.5/group?id=\(cityID)&appid=\(APIKey)&units=metric")
         
         guard let url = url else {
             return completion(.failure(.badUrl))
