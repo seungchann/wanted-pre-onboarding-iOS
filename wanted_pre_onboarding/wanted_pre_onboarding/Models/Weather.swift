@@ -5,11 +5,6 @@
 //  Created by 김승찬 on 2022/09/06.
 //
 
-
-struct WeatherResponseList: Decodable {
-    let list: [WeatherResponse]
-}
-
 struct WeatherResponse: Decodable {
     let weather: [WeatherSummary]
     let main: Weather
