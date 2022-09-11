@@ -8,6 +8,7 @@
 import UIKit
 
 class DetailView: UIView {
+    @IBOutlet public var backButton: UIButton!
     @IBOutlet public var locationLabel: UILabel!
     @IBOutlet public var weatherIconImageView: UIImageView!
     @IBOutlet public var currentTemperatureLabel: UILabel!

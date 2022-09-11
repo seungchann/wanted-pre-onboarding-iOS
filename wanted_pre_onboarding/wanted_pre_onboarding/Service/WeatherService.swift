@@ -40,25 +40,4 @@ class WeatherService {
             }
         }.resume()
     }
-    
-    func getWeather(cityID: Int, completion: @escaping (Result<WeatherResponse, NetworkError>) -> Void) {
-        let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?id=\(cityID)&appid=\(APIKey)")
-        
-        guard let url = url else {
-            return completion(.failure(.badUrl))
-        }
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else {
-                return completion(.failure(.noData))
-            }
-            
-            let weatherResponse = try? JSONDecoder().decode(WeatherResponse.self, from: data)
-            if let weatherResponse = weatherResponse {
-                completion(.success(weatherResponse))
-            } else {
-                completion(.failure(.decodingError))
-            }
-        }.resume()
-    }
 }

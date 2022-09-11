@@ -71,8 +71,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeWeatherCell", for: indexPath) as? HomeWeatherInfoCell else {
             return UICollectionViewCell()
         }
-//        cell.backgroundColor = .black
-//        cell.layer.cornerRadius = 20
         
         cell.homeWeatherCellView.weatherIconImageView.setImageByIconID(id: weatherInfoList[indexPath.row].weather[0].icon)
         print(weatherInfoList[indexPath.row].name, weatherInfoList[indexPath.row].weather[0].icon)
@@ -89,5 +87,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         
         return CGSize(width: width-20, height: height / 4.5)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let detailViewController = self.storyboard?.instantiateViewController(withIdentifier: "detailViewController") as? DetailViewController else { return }
+        
+        detailViewController.weatherInfo = self.weatherInfoList[indexPath.row]
+        self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
