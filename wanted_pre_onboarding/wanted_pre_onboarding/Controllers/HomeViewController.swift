@@ -22,7 +22,7 @@ class HomeViewController: UIViewController {
         1845457: (15, "전주"), 1846266: (16, "제주시"), 1845759: (17, "천안"), 1845604: (18, "청주"), 1845136: (19, "춘천")
     ]
     
-    public var weatherInfoList: [(Int, WeatherResponse)] = []
+    public var weatherInfoList: [(Int?, WeatherResponse)] = []
     
     // MARK: - View Lifecycle
     override func viewDidLoad() {
@@ -48,9 +48,9 @@ class HomeViewController: UIViewController {
                 WeatherService.shared.getWeatherList(cityID: cityId) { result in
                     switch result {
                     case .success(let weatherResponseList):
-                        weatherResponseList.list.forEach { self.weatherInfoList.append((self.cityInfoDict[$0.id]!.0, $0)) }
+                        weatherResponseList.list.forEach { self.weatherInfoList.append((self.cityInfoDict[$0.id]?.0, $0)) }
                         DispatchQueue.main.async {
-                            self.weatherInfoList.sort { $0.0 < $1.0 }
+                            self.weatherInfoList.sort { $0.0 ?? 0 < $1.0 ?? 1 }
                             self.homeView.weatherInfoCollectionView.reloadData()
                         }
                     case .failure(_):
@@ -104,6 +104,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let detailViewController = self.storyboard?.instantiateViewController(withIdentifier: "detailViewController") as? DetailViewController else { return }
         
         detailViewController.weatherInfo = self.weatherInfoList[indexPath.row].1
+        detailViewController.cityName = self.cityInfoDict[self.weatherInfoList[indexPath.row].1.id]?.1
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

@@ -16,6 +16,7 @@ class DetailViewController: UIViewController {
     }
     
     public var weatherInfo: WeatherResponse?
+    public var cityName: String?
     
     // MARK: - View Lifecycle
     override func viewDidLoad() {
@@ -26,7 +27,7 @@ class DetailViewController: UIViewController {
     func setupLabels() {
         let view = self.detailView
         let info = self.weatherInfo
-        view?.locationLabel.text = info?.name
+        view?.locationLabel.text = self.cityName ?? "NONE"
         view?.weatherIconImageView.setImageByIconID(id: info?.weather[0].icon ?? "")
         view?.descriptionLabel.text = info?.weather[0].description
         view?.feelsTemperatureLabel.text = "Feels   \(info?.main.feels_like ?? 0)°"
