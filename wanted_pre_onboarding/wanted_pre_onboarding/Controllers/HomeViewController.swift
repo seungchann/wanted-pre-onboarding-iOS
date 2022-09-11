@@ -84,10 +84,14 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return UICollectionViewCell()
         }
         
-        cell.homeWeatherCellView.weatherIconImageView.setImageByIconID(id: weatherInfoList[indexPath.row].1.weather[0].icon)
-        cell.homeWeatherCellView.locationLabel.text = self.cityInfoDict[weatherInfoList[indexPath.row].1.id]?.1
-        cell.homeWeatherCellView.temperatureLabel.text = String(weatherInfoList[indexPath.row].1.main.temp) + "°C"
-        cell.homeWeatherCellView.humidityLabel.text = String(weatherInfoList[indexPath.row].1.main.humidity) + "%"
+        cell.layer.cornerRadius = 20
+        
+        if weatherInfoList.count != 0 {
+            cell.homeWeatherCellView.weatherIconImageView.setImageByIconID(id: weatherInfoList[indexPath.row].1.weather[0].icon)
+            cell.homeWeatherCellView.locationLabel.text = self.cityInfoDict[weatherInfoList[indexPath.row].1.id]?.1
+            cell.homeWeatherCellView.temperatureLabel.text = String(weatherInfoList[indexPath.row].1.main.temp) + " °"
+            cell.homeWeatherCellView.humidityLabel.text = String(weatherInfoList[indexPath.row].1.main.humidity) + " %"
+        }
         
         return cell
     }
