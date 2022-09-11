@@ -1,7 +1,7 @@
 # Wanted Pre Onboarding iOS  
 > 프리온보딩 iOS 코스  
 
-<img width="300" alt="1" src="https://user-images.githubusercontent.com/63276842/189526558-220cf35c-5242-4fe2-b7cb-4dd0b02df735.png"> <img width="300" alt="2" src="https://user-images.githubusercontent.com/63276842/189526562-ace6ea21-5487-4f36-ae4e-85c367893145.png"> <img width="300" alt="3" src="https://user-images.githubusercontent.com/63276842/189526565-460d9f1e-9e00-4f75-b1cb-61577f2fffdb.png">
+<img width="270" alt="1" src="https://user-images.githubusercontent.com/63276842/189526558-220cf35c-5242-4fe2-b7cb-4dd0b02df735.png"> <img width="270" alt="2" src="https://user-images.githubusercontent.com/63276842/189526562-ace6ea21-5487-4f36-ae4e-85c367893145.png"> <img width="270" alt="3" src="https://user-images.githubusercontent.com/63276842/189526565-460d9f1e-9e00-4f75-b1cb-61577f2fffdb.png">
 
 * [Weather API - OpenWeatherMap](https://openweathermap.org/api) 의 데이터를 사용한 날씨 정보 iOS APP 입니다.  
 * 앱의 요구사항은 [원티드 프리온보딩 코스 사전과제](https://yagomacademy.notion.site/4eb46f9eb3a442efb9d0856b72f15b74) 에 안내되어 있습니다.  
