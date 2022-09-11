@@ -10,4 +10,5 @@ import UIKit
 public class HomeView: UIView {
     @IBOutlet public var titleLabel: UILabel!
     @IBOutlet public var weatherInfoCollectionView: UICollectionView!
+    @IBOutlet var placeHolderLabel: UILabel!
 }

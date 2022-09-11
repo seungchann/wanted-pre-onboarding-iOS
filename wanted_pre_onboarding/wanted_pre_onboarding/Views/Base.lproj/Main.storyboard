@@ -113,18 +113,29 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="데이터를 불러오는 중입니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUd-O7-Whh">
+                                <rect key="frame" x="0.0" y="158" width="414" height="704"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="3LQ-gp-ME2" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="5QR-7T-COu"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fha-KR-CBK" secondAttribute="bottom" id="6v3-5Q-WRN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="HUd-O7-Whh" secondAttribute="bottom" id="7Vp-h3-9BI"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fha-KR-CBK" secondAttribute="trailing" id="7dV-VG-Dto"/>
                             <constraint firstItem="fha-KR-CBK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="8hd-Ig-7NG"/>
+                            <constraint firstItem="HUd-O7-Whh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="EFI-E4-nwE"/>
                             <constraint firstItem="3LQ-gp-ME2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="IJH-qR-ar1"/>
                             <constraint firstItem="fha-KR-CBK" firstAttribute="top" secondItem="3LQ-gp-ME2" secondAttribute="bottom" constant="20" id="Xwv-rd-2A0"/>
+                            <constraint firstItem="HUd-O7-Whh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="70" id="atv-Fn-6UP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="HUd-O7-Whh" secondAttribute="trailing" id="xb5-bp-zy4"/>
                         </constraints>
                         <connections>
+                            <outlet property="placeHolderLabel" destination="HUd-O7-Whh" id="tZx-4e-Pn1"/>
                             <outlet property="titleLabel" destination="3LQ-gp-ME2" id="4i5-Gj-JLs"/>
                             <outlet property="weatherInfoCollectionView" destination="fha-KR-CBK" id="EyE-2E-xQM"/>
                         </connections>

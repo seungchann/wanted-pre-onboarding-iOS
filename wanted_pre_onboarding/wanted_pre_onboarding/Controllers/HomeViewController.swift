@@ -38,17 +38,24 @@ class HomeViewController: UIViewController {
     }
     
     func fetchWeather(idDict: [Int: (Int, String)]) {
-        self.weatherInfoList = []
         let cityNum = self.cityInfoDict.count
+        var currentNum = 0
         for (id, (_, _)) in idDict {
             WeatherService.shared.getWeather(cityID: id) { result in
                 switch result {
                 case .success(let weatherResponse):
                     self.weatherInfoList.append((self.cityInfoDict[weatherResponse.id]?.0, weatherResponse))
                     
-                    if self.weatherInfoList.count == cityNum {
+                    currentNum = self.weatherInfoList.count
+                    if currentNum % cityNum == 0 {
+                        if currentNum > cityNum {
+                            self.weatherInfoList = Array(self.weatherInfoList[cityNum..<currentNum])
+                        }
                         DispatchQueue.main.async {
                             self.weatherInfoList.sort { $0.0 ?? 0 < $1.0 ?? 1 }
+                            if !(self.homeView.placeHolderLabel.isHidden) {
+                                self.homeView.placeHolderLabel.isHidden = true
+                            }
                             self.homeView.weatherInfoCollectionView.reloadData()
                         }
                     }
